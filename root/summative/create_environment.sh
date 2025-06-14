@@ -1,7 +1,7 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
-app_dir="submission_reminder_${yourname}"
+app_dir="/root/summative/submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
 mkdir -p "${app_dir}/config"
@@ -38,29 +38,44 @@ function check_submissions {
 }
 EOL
 
-cat > "$app_dir/app/reminder.sh" <<'EOL'
+cat > "$app_dir/app/reminder.sh" << EOL
 #!/bin/bash
 
+resolved_path="\$(readlink -f "\${BASH_SOURCE[0]}")"
+echo "Resolved path: \$resolved_path"
+
+script_dir="\$(dirname "\$resolved_path")"
+echo "Script directory: \$script_dir"
+
+# Go up one level to basefolder
+base_dir="\$(dirname "\$script_dir")"
+
+echo "file \$base_dir"
+
 # Source environment variables and helper functions
-source ./config/config.env
-source ./modules/functions.sh
+source "\$base_dir/config/config.env"
+source "\$base_dir/modules/functions.sh"
 
 # Path to the submissions file
-submissions_file="./assets/submissions.txt"
+submissions_file="\$base_dir/assets/submissions.txt"
+
+echo "\$submissions_file"
 
 # Print remaining time and run the reminder function
-echo "Assignment: $ASSIGNMENT"
-echo "Days remaining to submit: $DAYS_REMAINING days"
+echo "Assignment: \$ASSIGNMENT"
+echo "Days remaining to submit: \$DAYS_REMAINING days"
 echo "--------------------------------------------"
-
-check_submissions "$submissions_file"
+check_submissions "\$submissions_file"
 EOL
 
 cat > "$app_dir/assets/submissions.txt" << EOL
 student, assignment, submission status
+Erin,Shell Redirections, submitted
+Grace, Shell basics, not submitted
 Chinemerem, Shell Navigation, not submitted
 Chiagoziem, Git, submitted
 Divine, Shell Navigation, not submitted
+Terry, Git, not submitted
 Anissa, Shell Basics, submitted
 EOL
 
@@ -70,9 +85,7 @@ app_dir="$(dirname "$(readlink -f "$0")")"
 
 chmod +x "$app_dir/app/reminder.sh"
 chmod +x "$app_dir/modules/functions.sh"
-chmod +x "$app_dir/startup.sh"
-
-"$app_dir/app/reminder.sh"
+bash "$app_dir/app/reminder.sh"
 EOL
 
 chmod +x "$app_dir/startup.sh"

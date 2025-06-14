@@ -1,8 +1,6 @@
 #!/bin/bash
 app_dir="/root/summative"
 
-chmod +x "submission_reminder_erin/app/reminder.sh"
-chmod +x "submission_reminder_erin/modules/functions.sh"
-chmod +x "submission_reminder_erin/startup.sh"
-
-"submission_reminder_erin/app/reminder.sh"
+chmod +x "/root/summative/submission_reminder_erin/app/reminder.sh"
+chmod +x "/root/summative/submission_reminder_erin/modules/functions.sh"
+bash "/root/summative/submission_reminder_erin/app/reminder.sh"
