@@ -1,7 +1,7 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
-app_dir="/root/summative/submission_reminder_${yourname}"
+app_dir="/submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
 mkdir -p "${app_dir}/config"
