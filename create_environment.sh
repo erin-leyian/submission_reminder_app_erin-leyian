@@ -1,7 +1,8 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
-app_dir="/root/summative/submission_reminder_${yourname}"
+# creating the directory
+app_dir="submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
 mkdir -p "${app_dir}/config"
@@ -92,3 +93,4 @@ chmod +x "$app_dir/startup.sh"
 
 echo "Setup is complete in $app_dir"
 echo "Run the app using :bash $app_dir/startup.sh"
+
