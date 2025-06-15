@@ -1,8 +1,13 @@
 #!/bin/bash
 
+read -p "Enter your username: " username
 read -p "Enter the new assignment name:" new_assignment
 
+
 CONFIG_FILE=submission_reminder_${new_assignment}/config/config.env
+app_dir="submission_reminder_$username"
+CONFIG_FILE="$app_dir/config/config.env"
+
 if [[ ! -f "$CONFIG_FILE" ]]; then
 	echo "Error "$CONFIG_FILE" not found"
 	exit 1
@@ -18,6 +23,8 @@ read -p "Do you want to run startup.sh now? (y/n):" answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
 	if [[ -f "submission_reminder_${new_assignment}/startup.sh" ]]; then
 		bash submission_reminder_${new_assignment}/startup.sh
+	if [[ -f "submission_reminder_$username/startup.sh" ]]; then
+		bash submission_reminder_$username/startup.sh
 	else
         	echo "startup.sh not found in the current directory"
         fi

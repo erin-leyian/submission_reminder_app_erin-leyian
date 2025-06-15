@@ -1,6 +1,7 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
+
 # creating the directory
 app_dir="submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
