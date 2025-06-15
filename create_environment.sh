@@ -1,10 +1,7 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
-<<<<<<< HEAD
-=======
 # creating the directory
->>>>>>> feature/setup
 app_dir="submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
