@@ -1,6 +1,10 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
+<<<<<<< HEAD
+=======
+# creating the directory
+>>>>>>> feature/setup
 app_dir="submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
@@ -92,3 +96,4 @@ chmod +x "$app_dir/startup.sh"
 
 echo "Setup is complete in $app_dir"
 echo "Run the app using :bash $app_dir/startup.sh"
+
