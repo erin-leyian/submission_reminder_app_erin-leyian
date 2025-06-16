@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p "Enter your username: " username
-read -p "Enter the new assignment name:" new_assignment
+read -p "Enter the new assignment name:" my_new_assignment
 
 app_dir="submission_reminder_$username"
 CONFIG_FILE="$app_dir/config/config.env"
@@ -11,10 +11,10 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
 	exit 1
 fi
 
-safe_assignment=$(printf '%s\n' "$new_assignment" | sed 's/[/&]/\\&/g')
+safe_assignment=$(printf '%s\n' "$my_new_assignment" | sed 's/[\/&]/\\&/g')
 sed -i "2s|^.*$|ASSIGNMENT=\"$safe_assignment\"|" "$CONFIG_FILE"
 
-echo "Assignment name has been changed to "$new_assignment" in "$CONFIG_FILE""
+echo "Assignment name has been changed to "$my_new_assignment" in "$CONFIG_FILE""
 
 read -p "Do you want to run startup.sh now? (y/n): " answer
 
