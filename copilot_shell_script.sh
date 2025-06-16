@@ -3,12 +3,9 @@
 read -p "Enter your username: " username
 read -p "Enter the new assignment name:" new_assignment
 
-<<<<<<< HEAD
 app_dir="submission_reminder_$username"
 CONFIG_FILE="$app_dir/config/config.env"
-=======
-CONFIG_FILE=submission_reminder_${new_assignment}/config/config.env
->>>>>>> feature/setup
+
 if [[ ! -f "$CONFIG_FILE" ]]; then
 	echo "Error "$CONFIG_FILE" not found"
 	exit 1
@@ -19,16 +16,13 @@ sed -i "2s|^.*$|ASSIGNMENT=\"$safe_assignment\"|" "$CONFIG_FILE"
 
 echo "Assignment name has been changed to "$new_assignment" in "$CONFIG_FILE""
 
-read -p "Do you want to run startup.sh now? (y/n):" answer
+read -p "Do you want to run startup.sh now? (y/n): " answer
 
 if [[ "$answer" =~ ^[Yy]$ ]]; then
-<<<<<<< HEAD
+
 	if [[ -f "submission_reminder_$username/startup.sh" ]]; then
 		bash submission_reminder_$username/startup.sh
-=======
-	if [[ -f "submission_reminder_${new_assignment}/startup.sh" ]]; then
-		bash submission_reminder_${new_assignment}/startup.sh
->>>>>>> feature/setup
+
 	else
         	echo "startup.sh not found in the current directory"
         fi
