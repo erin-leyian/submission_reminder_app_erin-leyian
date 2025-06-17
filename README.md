@@ -5,9 +5,10 @@ This is a shell scripting project that builds a simple reminder system to track 
 
  Project Structure
 
-The application consists of:
+My directory "Submission_reminder_app_erin-leyian" is located inside the Summative directory .
+The directory (Submission_reminder_app_erin-leyian) contains:
 
-- `create_environment.sh`: Sets up the application folder with all necessary directories and scripts.
+- `create_environment.sh`: which when run sets up the `submission_reminder_{YourName}` directory.
 - `copilot_shell_script.sh`: Updates the assignment name in the configuration and optionally reruns the reminder.
 - `README.md`: Instructions on setting up and running the app.
 
