@@ -1,21 +1,24 @@
 #!/bin/bash
 read -p "Enter your name:" yourname
 
-# creating the directory
+# creating the submission_reminder{}  directory
 app_dir="submission_reminder_${yourname}"
 mkdir -p "${app_dir}"
 
+#ensuring all the files are in the directory
 mkdir -p "${app_dir}/config"
 mkdir -p "${app_dir}/assets"
 mkdir -p "${app_dir}/modules"
 mkdir -p "${app_dir}/app"
 
+#config.env
 cat > "${app_dir}/config/config.env" << 'EOL' 
 #This is the config file
 ASSIGNMENT="Shell Navigation"
 DAYS_REMAINING=2
 EOL
 
+#functions.sh
 cat > "$app_dir/modules/functions.sh" <<'EOL'
 #!/bin/bash
 
@@ -39,6 +42,7 @@ function check_submissions {
 }
 EOL
 
+#reminder.sh
 cat > "$app_dir/app/reminder.sh" << EOL
 #!/bin/bash
 
@@ -69,6 +73,7 @@ echo "--------------------------------------------"
 check_submissions "\$submissions_file"
 EOL
 
+#submissions.txt
 cat > "$app_dir/assets/submissions.txt" << EOL
 student, assignment, submission status
 Erin,Shell Redirections, submitted
@@ -80,6 +85,7 @@ Terry, Git, not submitted
 Anissa, Shell Basics, submitted
 EOL
 
+#startup.sh
 cat > "$app_dir/startup.sh" <<EOL
 #!/bin/bash
 app_dir="$(dirname "$(readlink -f "$0")")"
@@ -89,8 +95,10 @@ chmod +x "$app_dir/modules/functions.sh"
 bash "$app_dir/app/reminder.sh"
 EOL
 
+#adding permissions to startup.sh
 chmod +x "$app_dir/startup.sh"
 
+#what to print on the screen
 echo "Setup is complete in $app_dir"
 echo "Run the app using :bash $app_dir/startup.sh"
 
