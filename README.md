@@ -5,7 +5,7 @@ This is a shell scripting project that builds a simple reminder system to track 
 
  Project Structure
 
-My directory "Submission_reminder_app_erin-leyian" is located inside the summative directory .
+My directory "Submission_reminder_app_erin-leyian" is located inside the summative directory in the root directory.
 The directory (Submission_reminder_app_erin-leyian) contains:
 
 - `create_environment.sh`: which when run sets up the `submission_reminder_{YourName}` directory.
